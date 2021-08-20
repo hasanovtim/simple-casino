@@ -6,20 +6,19 @@ server:
 
 eureka:
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-        defaultZone: http://localhost:8081/eureka
+      defaultZone: http://localhost:8081/eureka
 
 zuul:
-  ignored-services: '*'
+  ignoredServices: '*'
   routes:
     wallets:
       path: '/wallet/**'
-      strip-prefix: false
-      service-id: 'wallet'
+      stripPrefix: false
+      serviceId: 'http://localhost:8083/'
     games:
       path: '/game/**'
-      strip-prefix: false
-      service-id: 'game'
-
+      stripPefix: false
+      serviceId: 'http://localhost:8084/'

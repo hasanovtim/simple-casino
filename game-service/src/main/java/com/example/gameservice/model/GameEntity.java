@@ -7,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class GameEntity implements Serializable {
     public GameEntity(String gameId, String playerId, BigDecimal amount) {
         this.gameId = gameId;
