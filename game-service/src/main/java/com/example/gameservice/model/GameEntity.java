@@ -1,7 +1,6 @@
 package com.example.gameservice.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class GameEntity implements Serializable {
     public GameEntity(String gameId, String playerId, BigDecimal amount) {
         this.gameId = gameId;

@@ -2,10 +2,12 @@ spring:
   application:
     name: game
   datasource:
-    url: jdbc:postgresql://localhost:5432/game
-    username: postgres
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
   jpa:
+    database-platfrom: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
 server:
@@ -16,4 +18,4 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-        defaultZone: http://localhost:8081/eureka
+      defaultZone: http://localhost:8081/eureka

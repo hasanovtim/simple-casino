@@ -2,7 +2,6 @@ package com.example.gameservice;
 
 import com.example.gameservice.service.WalletClient;
 import org.mockito.Mockito;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
