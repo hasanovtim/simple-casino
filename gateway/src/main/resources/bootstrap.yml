@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Gateway
+server:
+  port: 8080
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+        defaultZone: http://localhost:8081/eureka
+
+zuul:
+  ignored-services: '*'
+  routes:
+    wallets:
+      path: '/wallet/**'
+      strip-prefix: false
+      service-id: 'wallet'
+    games:
+      path: '/game/**'
+      strip-prefix: false
+      service-id: 'game'
+
