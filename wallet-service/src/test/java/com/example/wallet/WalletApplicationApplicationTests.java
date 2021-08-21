@@ -44,17 +44,6 @@ public class WalletApplicationApplicationTests {
 	}
 
 	@Test
-	public void shouldGetListOfWallets() {
-		//register
-		register();
-		restTemplate.postForEntity("/wallet/2", null, WalletEntity.class);
-		restTemplate.postForEntity("/wallet/3", null, WalletEntity.class);
-		//deposit
-		ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("/wallet", Object[].class);
-		responseEntity.getBody();
-	}
-
-	@Test
 	public void shouldDeposit() {
 		//register
 		register();
