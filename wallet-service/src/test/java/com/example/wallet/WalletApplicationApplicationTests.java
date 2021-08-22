@@ -1,6 +1,6 @@
 package com.example.wallet;
 
-import com.example.wallet.model.WalletEntity;
+import com.example.wallet.entity.WalletEntity;
 import com.example.wallet.request.WalletRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;

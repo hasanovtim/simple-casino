@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: game
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platfrom: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: 8084
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka

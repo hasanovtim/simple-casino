@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GameResponse {
     private String playerId;
-
     private String gameId;
-
     private BigDecimal betAmount;
 }

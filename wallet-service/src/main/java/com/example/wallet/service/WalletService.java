@@ -1,14 +1,17 @@
 package com.example.wallet.service;
 
-import com.example.wallet.model.WalletEntity;
+import com.example.wallet.entity.WalletEntity;
+import com.example.wallet.exception.InsufficientFundsException;
+import com.example.wallet.exception.PlayerAlreadyExistException;
+import com.example.wallet.exception.PlayerNotFoundException;
 import com.example.wallet.repository.WalletRepository;
 import com.example.wallet.request.WalletRequest;
-import java.util.Optional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +21,7 @@ public class WalletService {
     public WalletEntity register(String playerId) {
         Optional<WalletEntity> player = walletRepository.findByPlayerId(playerId);
         if (player.isPresent()) {
-            throw new RuntimeException(String.format("Player %s already exist", playerId));
+            throw new PlayerAlreadyExistException(playerId);
         }
 
         return walletRepository.save(new WalletEntity(playerId, new BigDecimal("0")));
@@ -40,12 +43,13 @@ public class WalletService {
         return walletRepository.findAll();
     }
 
+    @Transactional
     public WalletEntity withdraw(String playerId, WalletRequest request) {
         WalletEntity wallet = getWalletEntity(playerId);
         BigDecimal withdrawAmount = request.getAmount();
 
         if (wallet.getBalance().compareTo(withdrawAmount) < 0)
-            throw new RuntimeException(String.format("Insufficient funds for player %s ", playerId));
+            throw new InsufficientFundsException(playerId);
 
         wallet.setBalance(wallet.getBalance().subtract(withdrawAmount));
 
@@ -54,6 +58,6 @@ public class WalletService {
 
     private WalletEntity getWalletEntity(String playerId) {
         return walletRepository.findByPlayerId(playerId)
-            .orElseThrow(() -> new RuntimeException(String.format("Player %s is not exist", playerId)));
+            .orElseThrow(() -> new PlayerNotFoundException(playerId));
     }
 }

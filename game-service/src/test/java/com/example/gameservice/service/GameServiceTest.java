@@ -1,6 +1,6 @@
 package com.example.gameservice.service;
 
-import com.example.gameservice.model.GameEntity;
+import com.example.gameservice.entity.GameEntity;
 import com.example.gameservice.repository.GameRepository;
 import com.example.gameservice.request.GameRequest;
 import com.example.gameservice.response.GameResponse;
@@ -55,8 +55,8 @@ public class GameServiceTest {
         Mockito.when(gameRepository.findByGameId(GAME_ID))
             .thenReturn(Collections.singletonList(new GameEntity(GAME_ID, PLAYER_ID, BET)));
 
-        List<GameResponse> bets = gameService.getBets(GAME_ID);
-        GameResponse game = bets.get(0);
+        List<GameEntity> bets = gameService.getBets(GAME_ID);
+        GameEntity game = bets.get(0);
         assertThat(game.getPlayerId(), equalTo(PLAYER_ID));
         assertThat(game.getGameId(), equalTo(GAME_ID));
         assertThat(game.getBetAmount(), equalTo(BET));

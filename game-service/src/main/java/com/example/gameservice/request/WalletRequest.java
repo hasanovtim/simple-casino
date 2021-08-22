@@ -2,22 +2,16 @@ package com.example.gameservice.request;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class WalletRequest {
-    public WalletRequest() {}
-
-    public WalletRequest(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     @NotNull
     private BigDecimal amount;
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 }

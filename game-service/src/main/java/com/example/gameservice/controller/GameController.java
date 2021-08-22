@@ -3,35 +3,39 @@ package com.example.gameservice.controller;
 import com.example.gameservice.response.GameResponse;
 import com.example.gameservice.request.GameRequest;
 import com.example.gameservice.service.GameService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/game")
 public class GameController {
     private final GameService gameService;
+    private final DozerBeanMapper mapper;
 
     private static final String APPLICATION_JSON = "application/json";
 
     @PostMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public ResponseEntity<GameResponse> placeBet(@PathVariable("id") String gameId,
-                                                 @Valid @RequestBody GameRequest request) {
-        return ResponseEntity.ok(gameService.placeBet(gameId, request));
+    public GameResponse placeBet(@PathVariable("id") String gameId,
+                                 @RequestBody GameRequest request) {
+        return mapper.map(gameService.placeBet(gameId, request), GameResponse.class);
     }
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public ResponseEntity<List<GameResponse>> betsByGame(@PathVariable("id") String gameId) {
+    public List<GameResponse> betsByGame(@PathVariable("id") String gameId) {
 
-        return ResponseEntity.ok(gameService.getBets(gameId));
+        return gameService.getBets(gameId)
+            .stream().map(g -> mapper.map(g, GameResponse.class)).collect(
+            Collectors.toList());
     }
 
     @GetMapping(path = "/", produces = APPLICATION_JSON)
-    public ResponseEntity<List<GameResponse>> allBets() {
-        return ResponseEntity.ok(gameService.allBets());
+    public List<GameResponse> allBets() {
+        return gameService.getAllBets()
+            .stream().map(g -> mapper.map(g, GameResponse.class)).collect(
+            Collectors.toList());
     }
 }

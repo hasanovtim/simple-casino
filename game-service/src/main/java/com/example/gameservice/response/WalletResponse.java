@@ -11,6 +11,5 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class WalletResponse {
     private String playerId;
-
     private BigDecimal balance;
 }

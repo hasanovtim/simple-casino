@@ -1,34 +1,22 @@
 package com.example.gameservice.request;
 
-import javax.validation.constraints.NotNull;
+import com.example.gameservice.validation.UUID;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class GameRequest {
-    @NotNull
+    @NotEmpty
+    @UUID
     private String playerId;
     @NotNull
     private BigDecimal amount;
-
-    public GameRequest() {}
-
-    public GameRequest(String playerId, BigDecimal amount) {
-        this.playerId = playerId;
-        this.amount = amount;
-    }
-
-    public String getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 }
