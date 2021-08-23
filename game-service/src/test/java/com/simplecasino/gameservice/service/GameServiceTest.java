@@ -1,10 +1,10 @@
-package com.example.gameservice.service;
+package com.simplecasino.gameservice.service;
 
-import com.example.gameservice.entity.GameEntity;
-import com.example.gameservice.repository.GameRepository;
-import com.example.gameservice.request.GameRequest;
-import com.example.gameservice.response.GameResponse;
-import com.example.gameservice.response.WalletResponse;
+import com.simplecasino.gameservice.entity.GameEntity;
+import com.simplecasino.gameservice.repository.GameRepository;
+import com.simplecasino.gameservice.request.GameRequest;
+import com.simplecasino.gameservice.response.GameResponse;
+import com.simplecasino.gameservice.response.WalletResponse;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;

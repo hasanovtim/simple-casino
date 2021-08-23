@@ -1,4 +1,4 @@
-package com.example.gameservice.response;
+package com.simplecasino.gameservice.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

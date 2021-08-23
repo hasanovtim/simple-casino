@@ -1,4 +1,4 @@
-package com.example.wallet.response;
+package com.simplecasino.wallet.response;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

@@ -17,7 +17,7 @@
 	</properties>
 
 	<parent>
-		<groupId>com.example</groupId>
+		<groupId>com.simplecasino</groupId>
 		<artifactId>microservice</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -40,6 +40,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.simplecasino.discovery.App</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

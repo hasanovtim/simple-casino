@@ -1,8 +1,8 @@
-package com.example.gameservice.controller;
+package com.simplecasino.gameservice.controller;
 
-import com.example.gameservice.response.GameResponse;
-import com.example.gameservice.request.GameRequest;
-import com.example.gameservice.service.GameService;
+import com.simplecasino.gameservice.response.GameResponse;
+import com.simplecasino.gameservice.request.GameRequest;
+import com.simplecasino.gameservice.service.GameService;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;

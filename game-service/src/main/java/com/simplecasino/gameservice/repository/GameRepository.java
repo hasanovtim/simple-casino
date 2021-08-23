@@ -1,6 +1,6 @@
-package com.example.gameservice.repository;
+package com.simplecasino.gameservice.repository;
 
-import com.example.gameservice.entity.GameEntity;
+import com.simplecasino.gameservice.entity.GameEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

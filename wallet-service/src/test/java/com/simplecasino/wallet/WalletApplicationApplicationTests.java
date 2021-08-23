@@ -1,21 +1,20 @@
-package com.example.wallet;
+package com.simplecasino.wallet;
 
-import com.example.wallet.entity.WalletEntity;
-import com.example.wallet.request.WalletRequest;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import com.simplecasino.wallet.entity.WalletEntity;
+import com.simplecasino.wallet.request.WalletRequest;
+import java.math.BigDecimal;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.math.BigDecimal;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import org.springframework.web.client.RestClientException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -36,11 +35,10 @@ public class WalletApplicationApplicationTests {
 		assertThat(body.getPlayerId(), equalTo(PLAYER_ID));
 	}
 
-	@Test
+	@Test(expected = RestClientException.class)
 	public void shouldReturnErrorOnAttemptToRegisterExistPlayer() {
 		register();
-		ResponseEntity<WalletEntity> response = register();
-		assertThat(response.getStatusCode(), equalTo(HttpStatus.INTERNAL_SERVER_ERROR));
+		register();
 	}
 
 	@Test

@@ -1,4 +1,4 @@
-package com.example.gameservice.request;
+package com.simplecasino.gameservice.request;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;

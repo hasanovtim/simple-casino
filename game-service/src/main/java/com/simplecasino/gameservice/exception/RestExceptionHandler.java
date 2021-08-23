@@ -1,4 +1,4 @@
-package com.example.gameservice.exception;
+package com.simplecasino.gameservice.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

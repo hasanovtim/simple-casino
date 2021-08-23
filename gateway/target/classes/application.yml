@@ -17,7 +17,6 @@ spring:
           predicates:
             - Path=/wallet/**
 
-
 server:
   port: 8080
 

@@ -11,7 +11,7 @@
 	<description>Gateway</description>
 
 	<parent>
-		<groupId>com.example</groupId>
+		<groupId>com.simplecasino</groupId>
 		<artifactId>microservice</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -34,6 +34,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.simplecasino.gateway.App</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

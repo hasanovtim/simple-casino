@@ -1,11 +1,11 @@
-package com.example.wallet.service;
+package com.simplecasino.wallet.service;
 
-import com.example.wallet.entity.WalletEntity;
-import com.example.wallet.exception.InsufficientFundsException;
-import com.example.wallet.exception.PlayerAlreadyExistException;
-import com.example.wallet.exception.PlayerNotFoundException;
-import com.example.wallet.repository.WalletRepository;
-import com.example.wallet.request.WalletRequest;
+import com.simplecasino.wallet.entity.WalletEntity;
+import com.simplecasino.wallet.exception.InsufficientFundsException;
+import com.simplecasino.wallet.exception.PlayerAlreadyExistException;
+import com.simplecasino.wallet.exception.PlayerNotFoundException;
+import com.simplecasino.wallet.repository.WalletRepository;
+import com.simplecasino.wallet.request.WalletRequest;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;

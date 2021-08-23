@@ -1,4 +1,4 @@
-package com.example.wallet.request;
+package com.simplecasino.wallet.request;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;

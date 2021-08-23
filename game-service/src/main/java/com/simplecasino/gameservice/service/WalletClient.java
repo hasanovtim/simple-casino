@@ -1,7 +1,7 @@
-package com.example.gameservice.service;
+package com.simplecasino.gameservice.service;
 
-import com.example.gameservice.response.WalletResponse;
-import com.example.gameservice.request.WalletRequest;
+import com.simplecasino.gameservice.response.WalletResponse;
+import com.simplecasino.gameservice.request.WalletRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

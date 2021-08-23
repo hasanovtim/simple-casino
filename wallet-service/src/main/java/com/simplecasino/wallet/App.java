@@ -1,4 +1,4 @@
-package com.example.wallet;
+package com.simplecasino.wallet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

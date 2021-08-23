@@ -1,4 +1,4 @@
-package com.example.wallet.entity;
+package com.simplecasino.wallet.entity;
 
 import javax.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;

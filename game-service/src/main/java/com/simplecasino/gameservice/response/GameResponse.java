@@ -1,4 +1,4 @@
-package com.example.gameservice.response;
+package com.simplecasino.gameservice.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

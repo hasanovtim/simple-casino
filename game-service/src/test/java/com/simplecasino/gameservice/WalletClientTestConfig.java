@@ -1,6 +1,6 @@
-package com.example.gameservice;
+package com.simplecasino.gameservice;
 
-import com.example.gameservice.service.WalletClient;
+import com.simplecasino.gameservice.service.WalletClient;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

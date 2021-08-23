@@ -1,6 +1,6 @@
-package com.example.gameservice.request;
+package com.simplecasino.gameservice.request;
 
-import com.example.gameservice.validation.UUID;
+import com.simplecasino.gameservice.validation.UUID;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;

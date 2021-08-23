@@ -1,6 +1,6 @@
-package com.example.wallet.repository;
+package com.simplecasino.wallet.repository;
 
-import com.example.wallet.entity.WalletEntity;
+import com.simplecasino.wallet.entity.WalletEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

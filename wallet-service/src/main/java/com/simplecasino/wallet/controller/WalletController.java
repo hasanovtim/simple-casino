@@ -1,9 +1,9 @@
-package com.example.wallet.controller;
+package com.simplecasino.wallet.controller;
 
-import com.example.wallet.request.WalletRequest;
-import com.example.wallet.response.WalletResponse;
-import com.example.wallet.service.WalletService;
-import com.example.wallet.validation.UUID;
+import com.simplecasino.wallet.request.WalletRequest;
+import com.simplecasino.wallet.response.WalletResponse;
+import com.simplecasino.wallet.service.WalletService;
+import com.simplecasino.wallet.validation.UUID;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;

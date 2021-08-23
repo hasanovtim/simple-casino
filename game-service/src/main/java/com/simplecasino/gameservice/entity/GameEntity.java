@@ -1,4 +1,4 @@
-package com.example.gameservice.entity;
+package com.simplecasino.gameservice.entity;
 
 import lombok.Data;
 

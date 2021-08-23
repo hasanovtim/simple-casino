@@ -1,4 +1,4 @@
-package com.example.gameservice.validation;
+package com.simplecasino.gameservice.validation;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

@@ -1,4 +1,4 @@
-package com.example.gameservice.config;
+package com.simplecasino.gameservice.config;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;

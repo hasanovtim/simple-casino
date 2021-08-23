@@ -1,4 +1,4 @@
-package com.example.gameservice;
+package com.simplecasino.gameservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.example.wallet.validation;
+package com.simplecasino.wallet.validation;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

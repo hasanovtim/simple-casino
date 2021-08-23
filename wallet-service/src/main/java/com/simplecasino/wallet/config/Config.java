@@ -1,4 +1,4 @@
-package com.example.wallet.config;
+package com.simplecasino.wallet.config;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
