@@ -5,15 +5,15 @@ import com.example.gameservice.request.WalletRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "wallet", url = "http://localhost:8083/wallet/")
+@FeignClient("wallet-service")
 public interface WalletClient {
     String APPLICATION_JSON = "application/json";
 
-    @GetMapping(consumes = APPLICATION_JSON, value = "{id}")
-    WalletResponse getWallet(@PathVariable("id") String playerId);
+    @GetMapping(consumes = APPLICATION_JSON, value = "/wallet/{playerId}")
+    WalletResponse getWallet(@PathVariable("playerId") String playerId);
 
     @PostMapping(consumes = APPLICATION_JSON, produces = APPLICATION_JSON,
-            value = "{id}/withdraw")
+            value = "/wallet/{id}/withdraw")
     WalletResponse withDraw(@PathVariable("id") String playerId,
                             @RequestBody WalletRequest request);
 }

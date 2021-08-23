@@ -1,11 +1,15 @@
 spring:
   application:
-    name: Discovery
+    name: discovery-service
 server:
   port: 8081
 eureka:
+  instance:
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://localhost:8081
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    waitTimeInMsWhenSyncEmpty: 0

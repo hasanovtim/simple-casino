@@ -1,35 +1,47 @@
 spring:
   application:
-    name: Gateway
+    name: gateway-service
 server:
   port: 8080
 
 eureka:
   instance:
-    preferIpAddress: true
+    hostname: localhost
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8081/eureka
 
+ribbon:
+  http:
+    client:
+      enabled: false
+  restclient:
+    enabled: false
+
 zuul:
-  ribbon:
+  host:
     eager-load:
       enabled: true
-    connectTimeout: 10000
-    readTimeout: 10000
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+    max-total-connections: 1000
+    max-per-route-connections: 50
   ignoredServices: '*'
   routes:
-    games:
-      path: '/game/**'
+    game-service:
+      path: /game/**
+      stripPrefix: false
+      serviceId: game-service
+      ribbon:
+        listOfServers: http://localhost:8081
+    wallet-service:
+      path: /wallet/**
       strip-prefix: false
-      service-id: 'game'
-    wallets:
-      path: '/wallet/**'
-      strip-prefix: false
-      service-id: 'wallet'
-
+      service-id: wallet-service
+      ribbon:
+        listOfServers: http://localhost:8081
 
 logging:
   level:
@@ -37,10 +49,3 @@ logging:
       springframework:
         cloud:
           netflix: trace
-
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          enabled: false
