@@ -1,6 +1,0 @@
-com/example/wallet/service/WalletService.class
-com/example/wallet/WalletServiceApplication.class
-com/example/wallet/request/WalletRequest.class
-com/example/wallet/repository/WalletRepository.class
-com/example/wallet/controller/WalletController.class
-com/example/wallet/model/WalletEntity.class
