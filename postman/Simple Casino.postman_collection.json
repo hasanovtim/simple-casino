@@ -1,35 +1,36 @@
 {
 	"info": {
-		"_postman_id": "d2ced076-0313-4dd0-ab30-fcfb4bb77764",
+		"_postman_id": "2d8c3e39-ba5d-464a-b8ce-f1f6f507a60f",
 		"name": "Simple Casino",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Create wallet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"playerId\", data.playerId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"\":\"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8080/wallet/1/",
-					"protocol": "http",
+					"raw": "{{getway_url}}/wallet/{{$guid}}",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"wallet",
-						"1",
-						""
+						"{{$guid}}"
 					]
 				}
 			},
@@ -50,15 +51,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/wallet/1/deposit",
-					"protocol": "http",
+					"raw": "{{getway_url}}/wallet/{{playerId}}/deposit",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"wallet",
-						"1",
+						"{{playerId}}",
 						"deposit"
 					]
 				}
@@ -80,15 +79,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/wallet/1/withdraw",
-					"protocol": "http",
+					"raw": "{{getway_url}}/wallet/{{playerId}}/withdraw",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"wallet",
-						"1",
+						"{{playerId}}",
 						"withdraw"
 					]
 				}
@@ -113,15 +110,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/wallet/1/",
-					"protocol": "http",
+					"raw": "{{getway_url}}/wallet/{{playerId}}/",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"wallet",
-						"1",
+						"{{playerId}}",
 						""
 					]
 				}
@@ -135,7 +130,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"amount\" : 0.5,\n    \"playerId\": 1 \n}",
+					"raw": "{\n    \"amount\" : 0.5,\n    \"playerId\": \"{{playerId}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -143,15 +138,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/game/10/",
-					"protocol": "http",
+					"raw": "{{getway_url}}/game/1/",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"game",
-						"10",
+						"1",
 						""
 					]
 				}
@@ -176,15 +169,13 @@
 					}
 				},
 				"url": {
-					"raw": "​http://localhost:8080/game/10",
-					"protocol": "​http",
+					"raw": "{{getway_url}}/game/1",
 					"host": [
-						"localhost"
+						"{{getway_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"game",
-						"10"
+						"1"
 					]
 				}
 			},
