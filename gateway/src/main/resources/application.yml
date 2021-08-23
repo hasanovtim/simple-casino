@@ -5,6 +5,8 @@ server:
   port: 8080
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
@@ -12,16 +14,22 @@ eureka:
       defaultZone: http://localhost:8081/eureka
 
 zuul:
+  ribbon:
+    eager-load:
+      enabled: true
+    connectTimeout: 10000
+    readTimeout: 10000
   ignoredServices: '*'
   routes:
     games:
-      path: /game/**
+      path: '/game/**'
       strip-prefix: false
-      service-id: game
+      service-id: 'game'
     wallets:
-      path: /wallet/**
+      path: '/wallet/**'
       strip-prefix: false
-      service-id: wallet
+      service-id: 'wallet'
+
 
 logging:
   level:
@@ -29,3 +37,10 @@ logging:
       springframework:
         cloud:
           netflix: trace
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
