@@ -1,12 +1,17 @@
 # Simple Casino
-*Miscroservice oriented project with service registry, load balancer, API getway, unit and postman tests. Project made in scope of test task for one of Kyiv IT companies. Initial requirements you can find [here](https://github.com/hasanovtim/simple-casino/blob/main/assignment.pdf)*
+*Miscroservice oriented project with service registry, load balancer, API getway, unit and postman tests. Project made in scope of test task for one of Kyiv IT companies. Initial requirements you can find [here](https://github.com/hasanovtim/simple-casino/blob/main/docs/assignment.pdf)*
+
+## Architecture of microservices
+![](https://github.com/hasanovtim/simple-casino/blob/main/docs/architecture.jpeg)
 
 ## Quick tech overview
-Main tech stack - java with spring boot. Dependency management using maven. Parent [pom.xml](https://github.com/hasanovtim/simple-casino/blob/main/pom.xml) file in root folder ‘microservice’ contains 4 modules. 
-- *Discovery* (port 8081) - service registration and discovery using [Eureka Server](https://spring.io/guides/gs/service-registration-and-discovery)
-- *Gateway* (8080) - API router using [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)
-- *Game-service* (8083) - responsible for game activities like placeBet, getBetsByGame, getAllBets. Also it has rest communication with wallet-service using [fein](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) client. Rest calls carried out by dinamic service name (name registered in Eureka server). So all calls are load balanced. If we have multiple instances of wallet-service running it will handle it ([view code](https://github.com/hasanovtim/simple-casino/blob/main/game-service/src/main/java/com/simplecasino/gameservice/service/WalletClient.java))
-- *Wallet-service* (8084) - registerWallet, allWallets, getBalance, deposit, withdraw
+Main tech stack - java with spring boot. **Dependency management** system is  maven. Parent [pom.xml](https://github.com/hasanovtim/simple-casino/blob/main/pom.xml) file in root folder ‘microservice’ contains 4 modules. 
+- **Discovery** (port 8081) - service registration and discovery using [Eureka Server](https://spring.io/guides/gs/service-registration-and-discovery)
+- **Gateway** (8080) - API router using [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)
+- **Game-service** (8083) - responsible for game activities like placeBet, getBetsByGame, getAllBets. Also it has rest communication with wallet-service using [fein](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) client. Rest calls carried out by dinamic service name (name registered in Eureka server). So all calls are load balanced. If we have multiple instances of wallet-service running it will handle it ([view code](https://github.com/hasanovtim/simple-casino/blob/main/game-service/src/main/java/com/simplecasino/gameservice/service/WalletClient.java))
+- **Wallet-service** (8084) - registerWallet, allWallets, getBalance, deposit, withdraw
+
+**Error handling**
 Game and Wallet servives have global error handling using spring AOP and custom exceptions ([view code](https://github.com/hasanovtim/simple-casino/tree/main/game-service/src/main/java/com/simplecasino/gameservice/exception))
 
 ## Requirements
