@@ -76,9 +76,17 @@ Postman scripts are placed in [postman](https://github.com/hasanovtim/simple-cas
 
 ## Furure plans
 
+In scope of business logic
+- add validations
+- add rounding for bigdecimals
+- add support of currency
+- add authentification and authorization
+
+Tech improvements
 - wrap project to docker compose
-- add metrics, including custom metrics (profilers)
-- change maven to gradle
+- add health metrics
 - add e2e tests
 - change sync communication between services to message broker (kafka)
+- change maven to gradle
+ 
 
