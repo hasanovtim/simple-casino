@@ -5,7 +5,8 @@
 ![](https://github.com/hasanovtim/simple-casino/blob/main/docs/architecture.jpeg)
 
 ## Quick tech overview
-Main tech stack - java with spring boot. **Dependency management** system is  maven. Parent [pom.xml](https://github.com/hasanovtim/simple-casino/blob/main/pom.xml) file in root folder ‘microservice’ contains 4 modules. 
+Main tech stack - java with spring boot 
+**Dependency management** system is  maven. Parent [pom.xml](https://github.com/hasanovtim/simple-casino/blob/main/pom.xml) file in root folder ‘microservice’ contains 4 modules. 
 - **Discovery** (port 8081) - service registration and discovery using [Eureka Server](https://spring.io/guides/gs/service-registration-and-discovery)
 - **Gateway** (8080) - API router using [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)
 - **Game-service** (8083) - responsible for game activities like placeBet, getBetsByGame, getAllBets. Also it has rest communication with wallet-service using [fein](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) client. Rest calls carried out by dinamic service name (name registered in Eureka server). So all calls are load balanced. If we have multiple instances of wallet-service running it will handle it ([view code](https://github.com/hasanovtim/simple-casino/blob/main/game-service/src/main/java/com/simplecasino/gameservice/service/WalletClient.java))
@@ -13,6 +14,13 @@ Main tech stack - java with spring boot. **Dependency management** system is  ma
 
 **Error handling**
 Game and Wallet servives have global error handling using spring AOP and custom exceptions ([view code](https://github.com/hasanovtim/simple-casino/tree/main/game-service/src/main/java/com/simplecasino/gameservice/exception))
+
+**Transaction management**
+Transactions are managed using spring @Transcational annotation in all not atomic operations, like deposit, withdrow, placeBet
+
+**DB**
+H2 testDb - in memory database
+
 
 ## Requirements
 - Java 8+
@@ -61,5 +69,16 @@ VM options: -Dserver.port=8088 (at first instance you can leave empty - by defau
 ## Eureka service monitoring
 You can see all instances of services in eureka web http://localhost:8081
 
+![](https://github.com/hasanovtim/simple-casino/blob/main/docs/eureka.png)
+
 ## Postman
 Postman scripts are placed in [postman](https://github.com/hasanovtim/simple-casino/tree/main/postman) package in project root folder. Don't forget to import environment into your postman (local_env.postman_environment.json)
+
+## Furure plans
+
+- wrap project to docker compose
+- add metrics, including custom metrics (profilers)
+- change maven to gradle
+- add e2e tests
+- change sync communication between services to message broker (kafka)
+
