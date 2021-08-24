@@ -1,6 +1,8 @@
 package com.simplecasino.gameservice.service;
 
 import com.simplecasino.gameservice.entity.GameEntity;
+import com.simplecasino.gameservice.exception.InsufficientFundsException;
+import com.simplecasino.gameservice.exception.WalletException;
 import com.simplecasino.gameservice.repository.GameRepository;
 import com.simplecasino.gameservice.request.GameRequest;
 import com.simplecasino.gameservice.response.GameResponse;
@@ -48,6 +50,18 @@ public class GameServiceTest {
         assertThat(game.getGameId(), equalTo(GAME_ID));
         assertThat(game.getBetAmount(), equalTo(BET));
         verify(gameRepository).save(new GameEntity(GAME_ID, PLAYER_ID, BET));
+    }
+
+    @Test(expected = WalletException.class)
+    public void shouldThrowExceptionIfWalletNotFoundOrUnreachable() {
+        Mockito.when(walletClient.getWallet(PLAYER_ID)).thenThrow(new RuntimeException());
+        gameService.placeBet(GAME_ID, new GameRequest(PLAYER_ID, BET));
+    }
+
+    @Test(expected = InsufficientFundsException.class)
+    public void shouldThrowExceptionWhenInsufficientFunds() {
+        Mockito.when(walletClient.getWallet(PLAYER_ID)).thenReturn(new WalletResponse(PLAYER_ID, new BigDecimal(0)));
+        gameService.placeBet(GAME_ID, new GameRequest(PLAYER_ID, BET));
     }
 
     @Test

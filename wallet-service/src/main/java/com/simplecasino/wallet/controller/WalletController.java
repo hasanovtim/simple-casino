@@ -3,7 +3,6 @@ package com.simplecasino.wallet.controller;
 import com.simplecasino.wallet.request.WalletRequest;
 import com.simplecasino.wallet.response.WalletResponse;
 import com.simplecasino.wallet.service.WalletService;
-import com.simplecasino.wallet.validation.UUID;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
@@ -34,12 +33,12 @@ public class WalletController {
 
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public WalletResponse getWallet(@PathVariable("id") @UUID String playerId) {
+    public WalletResponse getWallet(@PathVariable("id") String playerId) {
         return mapper.map(walletService.getWallet(playerId), WalletResponse.class);
     }
 
     @PostMapping(value = "/{id}/deposit", produces = APPLICATION_JSON)
-    public WalletResponse deposit(@PathVariable("id") @UUID String playerId,
+    public WalletResponse deposit(@PathVariable("id") String playerId,
                                                 @Valid @RequestBody WalletRequest request) {
         return mapper.map(walletService.deposit(playerId, request.getAmount()), WalletResponse.class);
     }

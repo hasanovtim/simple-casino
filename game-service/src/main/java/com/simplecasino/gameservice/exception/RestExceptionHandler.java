@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
-
   @ExceptionHandler(value = { WalletException.class, IllegalStateException.class,
       InsufficientFundsException.class })
   protected ResponseEntity<Object> handleConflict(

@@ -1,6 +1,5 @@
 package com.simplecasino.gameservice.request;
 
-import com.simplecasino.gameservice.validation.UUID;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,6 @@ import lombok.Setter;
 @Setter
 public class GameRequest {
     @NotEmpty
-    @UUID
     private String playerId;
     @NotNull
     private BigDecimal amount;

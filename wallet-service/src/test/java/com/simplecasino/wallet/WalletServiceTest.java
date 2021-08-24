@@ -19,7 +19,7 @@ import org.springframework.web.client.RestClientException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class WalletApplicationApplicationTests {
+public class WalletServiceTest {
 	private static final String PLAYER_ID = "1";
 	private static final String WALLET_URL = "/wallet/" + PLAYER_ID;
 	private static final String DEPOSIT_URL = WALLET_URL + "/deposit";
@@ -36,7 +36,7 @@ public class WalletApplicationApplicationTests {
 	}
 
 	@Test(expected = RestClientException.class)
-	public void shouldReturnErrorOnAttemptToRegisterExistPlayer() {
+	public void shouldThrowExceptionOnAttemptToRegisterExistPlayer() {
 		register();
 		register();
 	}
@@ -50,6 +50,21 @@ public class WalletApplicationApplicationTests {
 				new WalletRequest(new BigDecimal("10.50")), WalletEntity.class).getBody();
 		assertThat(body.getBalance(), equalTo(new BigDecimal("10.50")));
 		assertThat(body.getPlayerId(), equalTo(PLAYER_ID));
+	}
+
+	@Test(expected = RestClientException.class)
+	public void shouldThrowExceptionWhenDepositWithNotExistPlayer() {
+		restTemplate.postForEntity(DEPOSIT_URL ,
+				new WalletRequest(new BigDecimal("10.50")), WalletEntity.class).getBody();
+	}
+
+	@Test(expected = RestClientException.class)
+	public void shouldThrowExceptionWhenWithdrawInsufficientFunds() {
+		register();
+		//deposit
+		//withdraw
+		restTemplate.postForEntity(WITHDRAW_URL ,
+				new WalletRequest(new BigDecimal("3.30")), WalletEntity.class).getBody();
 	}
 
 	@Test

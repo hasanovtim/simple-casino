@@ -39,7 +39,6 @@ public class WalletService {
     public WalletEntity deposit(String playerId, BigDecimal amount) {
         log.info(String.format("Deposit for %s", playerId));
         WalletEntity wallet = getWalletEntity(playerId);
-
         wallet.setBalance(wallet.getBalance().add(amount));
 
         return walletRepository.save(wallet);
