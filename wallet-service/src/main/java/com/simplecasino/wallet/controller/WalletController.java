@@ -34,8 +34,8 @@ public class WalletController {
 
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public WalletResponse getBalance(@PathVariable("id") @UUID String playerId) {
-        return mapper.map(walletService.getBalance(playerId), WalletResponse.class);
+    public WalletResponse getWallet(@PathVariable("id") @UUID String playerId) {
+        return mapper.map(walletService.getWallet(playerId), WalletResponse.class);
     }
 
     @PostMapping(value = "/{id}/deposit", produces = APPLICATION_JSON)
