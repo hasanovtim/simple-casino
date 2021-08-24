@@ -10,7 +10,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
-  @ExceptionHandler(value = { PlayerNotFoundException.class, PlayerAlreadyExistException.class })
+  @ExceptionHandler(value = { PlayerNotFoundException.class,
+                              PlayerAlreadyExistException.class,
+                              InsufficientFundsException.class,
+                              DepositLimitExceededException.class,
+                              WithdrawLimitExceededException.class })
   protected ResponseEntity<Object> handleConflict(
       RuntimeException ex, WebRequest request) {
     return handleExceptionInternal(ex, ex.getMessage(),

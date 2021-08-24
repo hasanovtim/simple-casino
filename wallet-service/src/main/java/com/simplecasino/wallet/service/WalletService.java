@@ -1,9 +1,11 @@
 package com.simplecasino.wallet.service;
 
 import com.simplecasino.wallet.entity.WalletEntity;
+import com.simplecasino.wallet.exception.DepositLimitExceededException;
 import com.simplecasino.wallet.exception.InsufficientFundsException;
 import com.simplecasino.wallet.exception.PlayerAlreadyExistException;
 import com.simplecasino.wallet.exception.PlayerNotFoundException;
+import com.simplecasino.wallet.exception.WithdrawLimitExceededException;
 import com.simplecasino.wallet.repository.WalletRepository;
 import com.simplecasino.wallet.request.WalletRequest;
 import java.math.BigDecimal;
@@ -19,6 +21,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class WalletService {
     private final WalletRepository walletRepository;
+    private final BigDecimal DEPOSIT_LIMIT = new BigDecimal(10000);
+    private final BigDecimal WITHDRAW_LIMIT = new BigDecimal(10000);
 
     public WalletEntity registerWallet(String playerId) {
         log.info(String.format("Register wallet for: %s", playerId));
@@ -36,8 +40,12 @@ public class WalletService {
     }
 
     @Transactional
-    public WalletEntity deposit(String playerId, BigDecimal amount) {
+    public WalletEntity deposit(String playerId, WalletRequest request) {
         log.info(String.format("Deposit for %s", playerId));
+        BigDecimal amount = request.getAmount();
+        if (amount.compareTo(DEPOSIT_LIMIT) > 0) {
+            throw new DepositLimitExceededException(playerId);
+        }
         WalletEntity wallet = getWalletEntity(playerId);
         wallet.setBalance(wallet.getBalance().add(amount));
 
@@ -52,11 +60,16 @@ public class WalletService {
     @Transactional
     public WalletEntity withdraw(String playerId, WalletRequest request) {
         log.info(String.format("Withdraw for %s", playerId));
+        BigDecimal amount = request.getAmount();
+        if (amount.compareTo(WITHDRAW_LIMIT) > 0) {
+            throw new WithdrawLimitExceededException(playerId);
+        }
         WalletEntity wallet = getWalletEntity(playerId);
         BigDecimal withdrawAmount = request.getAmount();
 
-        if (wallet.getBalance().compareTo(withdrawAmount) < 0)
+        if (wallet.getBalance().compareTo(withdrawAmount) < 0) {
             throw new InsufficientFundsException(playerId);
+        }
 
         wallet.setBalance(wallet.getBalance().subtract(withdrawAmount));
 

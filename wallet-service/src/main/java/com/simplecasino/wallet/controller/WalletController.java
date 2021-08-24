@@ -40,7 +40,7 @@ public class WalletController {
     @PostMapping(value = "/{id}/deposit", produces = APPLICATION_JSON)
     public WalletResponse deposit(@PathVariable("id") String playerId,
                                                 @Valid @RequestBody WalletRequest request) {
-        return mapper.map(walletService.deposit(playerId, request.getAmount()), WalletResponse.class);
+        return mapper.map(walletService.deposit(playerId, request), WalletResponse.class);
     }
 
     @PostMapping(path = "/{id}/withdraw", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)

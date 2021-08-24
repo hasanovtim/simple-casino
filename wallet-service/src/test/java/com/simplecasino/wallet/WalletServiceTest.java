@@ -59,12 +59,28 @@ public class WalletServiceTest {
 	}
 
 	@Test(expected = RestClientException.class)
+	public void shouldThrowExceptionWhenDepositLimitExceeded() {
+		//register
+		register();
+		//deposit
+		restTemplate.postForEntity(DEPOSIT_URL, new WalletRequest(new BigDecimal("999999999")), WalletEntity.class).getBody();
+	}
+
+	@Test(expected = RestClientException.class)
 	public void shouldThrowExceptionWhenWithdrawInsufficientFunds() {
 		register();
 		//deposit
 		//withdraw
 		restTemplate.postForEntity(WITHDRAW_URL ,
 				new WalletRequest(new BigDecimal("3.30")), WalletEntity.class).getBody();
+	}
+
+	@Test(expected = RestClientException.class)
+	public void shouldThrowExceptionWhenWithdrawLimitExceeded() {
+		//register
+		register();
+		//deposit
+		restTemplate.postForEntity(WITHDRAW_URL, new WalletRequest(new BigDecimal("999999999")), WalletEntity.class).getBody();
 	}
 
 	@Test
