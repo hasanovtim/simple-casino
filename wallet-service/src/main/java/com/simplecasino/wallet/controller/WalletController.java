@@ -21,8 +21,8 @@ public class WalletController {
     private final DozerBeanMapper mapper;
 
     @PostMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public WalletResponse register(@PathVariable("id") @Pattern(regexp = "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$") String playerId) {
-        return mapper.map(walletService.register(playerId), WalletResponse.class);
+    public WalletResponse registerWallet(@PathVariable("id") @Pattern(regexp = "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$") String playerId) {
+        return mapper.map(walletService.registerWallet(playerId), WalletResponse.class);
     }
 
     @GetMapping(path = "/", produces = APPLICATION_JSON)
@@ -34,7 +34,7 @@ public class WalletController {
 
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public WalletResponse balance(@PathVariable("id") @UUID String playerId) {
+    public WalletResponse getBalance(@PathVariable("id") @UUID String playerId) {
         return mapper.map(walletService.getBalance(playerId), WalletResponse.class);
     }
 

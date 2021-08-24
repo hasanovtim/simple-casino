@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class WalletService {
     private final WalletRepository walletRepository;
 
-    public WalletEntity register(String playerId) {
+    public WalletEntity registerWallet(String playerId) {
         Optional<WalletEntity> player = walletRepository.findByPlayerId(playerId);
         if (player.isPresent()) {
             throw new PlayerAlreadyExistException(playerId);

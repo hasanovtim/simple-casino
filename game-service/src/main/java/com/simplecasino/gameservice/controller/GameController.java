@@ -25,7 +25,7 @@ public class GameController {
     }
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON)
-    public List<GameResponse> betsByGame(@PathVariable("id") String gameId) {
+    public List<GameResponse> getBetsByGame(@PathVariable("id") String gameId) {
 
         return gameService.getBets(gameId)
             .stream().map(g -> mapper.map(g, GameResponse.class)).collect(
@@ -33,7 +33,7 @@ public class GameController {
     }
 
     @GetMapping(path = "/", produces = APPLICATION_JSON)
-    public List<GameResponse> allBets() {
+    public List<GameResponse> getAllBets() {
         return gameService.getAllBets()
             .stream().map(g -> mapper.map(g, GameResponse.class)).collect(
             Collectors.toList());
